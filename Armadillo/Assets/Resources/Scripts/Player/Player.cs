@@ -13,16 +13,20 @@ public class Player : MonoBehaviour
     
     private Rigidbody2D rb;
     private Animator anim;
+    private SpriteRenderer sr;
     private ParticleSystem jumpParticles;
     private ParticleSystem killParticles;
+    private ParticleSystem deathParticles;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        sr = GetComponent<SpriteRenderer>();
         jumpParticles = transform.GetChild(0).GetComponent<ParticleSystem>();  // uhh
-        killParticles = transform.GetChild(1).GetComponent<ParticleSystem>();  // change this
+        killParticles = transform.GetChild(1).GetComponent<ParticleSystem>();  // changed
+        deathParticles = transform.GetChild(1).GetComponent<ParticleSystem>();  // change this
         canBounce = 0;
     }
 
@@ -76,6 +80,27 @@ public class Player : MonoBehaviour
         return canBounce <= 0;
     }
 
+    private void Die()
+    {
+        //StartCoroutine(Death());
+        deathParticles.Play();
+        float duration = 
+                deathParticles.duration + deathParticles.startLifetime;  // ???
+        sr.enabled = false;
+        this.enabled = false;  // maybe sus, trying to get rid of bug where
+                               // you can still land on the ground after dying 
+        GlobalManager.instance.camController.Shake(0.1f, 0.25f, 1.0f);
+        Destroy(this.gameObject, duration);
+    }
+
+    //IEnumerator Death()
+    //{
+    //    deathParticles.Play();
+    //    //while (deathParticles.IsAlive());
+    //    Destroy(this.gameObject);
+    //    yield return null;
+    //}
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (!GlobalManager.instance.IsGameStarted() || !CanBounce() )
@@ -83,6 +108,12 @@ public class Player : MonoBehaviour
             return;
         }
 
+        /*
+         * TODO: if touching lava or spikes player should always die
+         */
+
+        // if not touching lava nor spikes, test if we can
+        // jump off of the object we're touching
         foreach(ContactPoint2D point in collision.contacts)
         {
             if (point.normal.y >= JUMP_THRESHHOLD)
@@ -103,6 +134,13 @@ public class Player : MonoBehaviour
                 }
                 return;
             }
+        }
+
+        // if not on top of other object
+        // see if it will kill you
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            Die();
         }
     }
 }

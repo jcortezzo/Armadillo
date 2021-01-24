@@ -29,6 +29,13 @@ public class CameraController : MonoBehaviour
     void LateUpdate()
     {
         // don't allow the camera to move backwards
+        UpdateCameraToPlayer();
+    }
+
+    private void UpdateCameraToPlayer()
+    {
+        if (!GlobalManager.instance.HasPlayer()) return;
+
         transform.position =
                 new Vector3(Mathf.Max(transform.position.x,
                                       GlobalManager.instance.player.transform.position.x),

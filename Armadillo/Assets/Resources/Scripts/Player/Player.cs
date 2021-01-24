@@ -111,6 +111,10 @@ public class Player : MonoBehaviour
         /*
          * TODO: if touching lava or spikes player should always die
          */
+        if (collision.gameObject.CompareTag("OHKO"))
+        {
+            Die();
+        }
 
         // if not touching lava nor spikes, test if we can
         // jump off of the object we're touching

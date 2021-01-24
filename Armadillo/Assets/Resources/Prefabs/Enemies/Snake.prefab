@@ -167,4 +167,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58c7f09c029f57c4e976fe346de653d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SPEED: 200
+  isQuantum: 0
+  probability: 0.5
+  SPEED: 2

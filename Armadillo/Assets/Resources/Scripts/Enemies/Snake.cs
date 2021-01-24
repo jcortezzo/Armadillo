@@ -26,7 +26,7 @@ public class Snake : Enemy
         OrientCorrectly(direction);
 
         // snakes aren't affected by gravity... kind of sus
-        rb.velocity = new Vector2(direction.x * SPEED * Time.deltaTime, rb.velocity.y);                                                                       
+        rb.velocity = new Vector2(direction.x * SPEED, rb.velocity.y);                                                                       
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

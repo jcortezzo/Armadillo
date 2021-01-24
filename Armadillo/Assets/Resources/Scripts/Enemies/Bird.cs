@@ -39,7 +39,7 @@ public class Bird : Enemy
 
         OrientCorrectly(movement);
 
-        rb.velocity = movement * SPEED * Time.deltaTime;
+        rb.velocity = movement * SPEED;
     }
 
     private void OnTriggerStay(Collider other)

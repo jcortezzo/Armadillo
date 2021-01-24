@@ -217,4 +217,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isQuantum: 0
   probability: 0.5
-  SPEED: 300
+  SPEED: 3

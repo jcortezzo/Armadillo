@@ -365,8 +365,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Score
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 0}
-  m_sharedMaterial: {fileID: -1966300316650803841, guid: 2b3894e104ffac647a2815bc49e42dd8,
+  m_fontAsset: {fileID: 11400000, guid: 5207f46d001f2ef4b8b998399806670d, type: 2}
+  m_sharedMaterial: {fileID: 7042760212599320357, guid: 5207f46d001f2ef4b8b998399806670d,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}

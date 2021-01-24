@@ -56,7 +56,7 @@ public class Player : MonoBehaviour
 
         Vector2 movement = new Vector2(horizontal, 0);
         movement.Normalize();
-        movement = new Vector2(movement.x * SPEED * Time.deltaTime, movement.y);
+        movement = new Vector2(movement.x * SPEED, movement.y);
 
         rb.velocity = new Vector2(movement.x, rb.velocity.y);
     }

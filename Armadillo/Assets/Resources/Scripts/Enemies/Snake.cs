@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Snake : MonoBehaviour
+public class Snake : Enemy
 {
     [SerializeField] private float SPEED;
     private Rigidbody2D rb;
@@ -23,20 +23,10 @@ public class Snake : MonoBehaviour
 
     private void Move()
     {
-        if (direction.x < 0 && !IsFacingLeft())
-        {
-            this.transform.localScale += new Vector3(2, 0, 0);  // janky as hell lol
-        }
-        else if (direction.x > 0 && IsFacingLeft())
-        {
-            this.transform.localScale += new Vector3(-2, 0, 0);
-        }
-        rb.velocity = new Vector2(direction.x * SPEED * Time.deltaTime, 0);
-    }
+        OrientCorrectly(direction);
 
-    private bool IsFacingLeft()
-    {
-        return this.transform.localScale.x > 0;
+        // snakes aren't affected by gravity... kind of sus
+        rb.velocity = new Vector2(direction.x * SPEED * Time.deltaTime, rb.velocity.y);                                                                       
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

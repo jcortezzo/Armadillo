@@ -56,6 +56,20 @@ public class LevelGenerator : MonoBehaviour
         if (GlobalManager.instance.player.transform.position.x >=
             currentRoom.boundingBox.center.x + DELETE_THRESHHOLD)
         {
+            // detatch enemy children before destroying
+            // so they can move between screens
+            // NOTE: I wish I could do this in OnDestroy() in Room,
+            //       but that causes undesirable behavior. It seems
+            //       even after detaching in OnDestroy(), the Room
+            //       still tries to delete all of its children at
+            //       the time that Destroy() was called.
+            foreach (Transform child in prevRoom.transform)
+            {
+                if (child.gameObject.CompareTag("Enemy"))
+                {
+                    child.SetParent(null);
+                }
+            }
             Destroy(prevRoom.gameObject);
         }
     }

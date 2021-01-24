@@ -45,7 +45,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.2044411, y: -0.000000024371275}
-  m_Size: {x: 9.64252, y: 4.770669}
+  m_Size: {x: 16.260603, y: 8.044988}
   m_Direction: 1
 --- !u!1 &6500749869121800270
 GameObject:
@@ -215,4 +215,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9545bd193542d0246a1d47bbfc62e262, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isQuantum: 0
+  probability: 0.5
   SPEED: 300

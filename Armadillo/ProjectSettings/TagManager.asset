@@ -44,6 +44,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Character
+  - name: Spike
+    uniqueID: 2557951735
+    locked: 0
+  - name: Env
     uniqueID: 1132453699
     locked: 0

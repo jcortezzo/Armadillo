@@ -43,3 +43,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a9eba254eace1c4e85f8998c88b289d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cam: {fileID: 0}
+  camController: {fileID: 0}
+  palette: {fileID: 0}
+  player: {fileID: 0}
+  enableDefault: 0
+  enableHell: 0
+  enableHeaven: 0

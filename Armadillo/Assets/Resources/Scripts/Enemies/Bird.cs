@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bird : MonoBehaviour
+public class Bird : Enemy
 {
     [SerializeField] private float SPEED;
     private bool seen;
@@ -37,21 +37,9 @@ public class Bird : MonoBehaviour
                 GlobalManager.instance.player.transform.position - this.transform.position;
         movement.Normalize();
 
-        if (movement.x < 0 && !IsFacingLeft())
-        {
-            this.transform.localScale += new Vector3(2, 0, 0);  // janky as hell lol
-        }
-        else if (movement.x > 0 && IsFacingLeft())
-        {
-            this.transform.localScale += new Vector3(-2, 0, 0);
-        }
+        OrientCorrectly(movement);
 
         rb.velocity = movement * SPEED * Time.deltaTime;
-    }
-
-    private bool IsFacingLeft()
-    {
-        return this.transform.localScale.x > 0;
     }
 
     private void OnTriggerStay(Collider other)

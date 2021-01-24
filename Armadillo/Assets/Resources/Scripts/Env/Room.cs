@@ -37,4 +37,18 @@ public class Room : MonoBehaviour
         }
         return b;
     }
+
+    // NOTE: See LevelGenerator for explanation
+    //private void OnDestroy()
+    //{
+    //    // detatch enemy children before destroying
+    //    // so they can move between screens
+    //    foreach (Transform child in transform)
+    //    {
+    //        if (child.gameObject.CompareTag("Enemy"))
+    //        {
+    //            child.SetParent(null);
+    //        }
+    //    }
+    //}
 }

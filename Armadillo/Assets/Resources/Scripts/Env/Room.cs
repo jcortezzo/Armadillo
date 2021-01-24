@@ -9,6 +9,9 @@ public class Room : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // should only need to calculate once
+        // if you keep all env inside of the box
+        // (I think I will do that 😊)
         boundingBox = GetBoundingBox();
     }
 
@@ -18,6 +21,10 @@ public class Room : MonoBehaviour
         
     }
 
+    /// <summary>
+    /// Creates a bounding box over all objects in the room.
+    /// </summary>
+    /// <returns>Bounds covering all objects in the room.</returns>
     Bounds GetBoundingBox()
     {
         Renderer[] renderers = GetComponentsInChildren<Renderer>();
@@ -30,9 +37,4 @@ public class Room : MonoBehaviour
         }
         return b;
     }
-
-    //private void OnBecameInvisible()
-    //{
-    //    Destroy(this.gameObject);
-    //}
 }

@@ -25,6 +25,9 @@ public class LevelGenerator : MonoBehaviour
         GenerateNextRoom(); 
     }
 
+    /// <summary>
+    /// Generates a new room if the player is close enough to the next room.
+    /// </summary>
     private void GenerateNextRoom()
     {
         if (!GlobalManager.instance.HasPlayer()) return;
@@ -42,6 +45,10 @@ public class LevelGenerator : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Deletes a room if the player is far enough away from it.
+    /// The player cannot move backwards so this is okay and efficient.
+    /// </summary>
     private void DeletePrevRoom()
     {
         if (!GlobalManager.instance.HasPlayer()) return;

@@ -47,6 +47,9 @@ public class Player : MonoBehaviour
         Move();
     }
 
+    /// <summary>
+    /// Moves the player horizontally.
+    /// </summary>
     private void Move()
     {
         float horizontal = Input.GetAxisRaw("Horizontal");
@@ -58,6 +61,9 @@ public class Player : MonoBehaviour
         rb.velocity = new Vector2(movement.x, rb.velocity.y);
     }
 
+    /// <summary>
+    /// Makes the player jump.
+    /// </summary>
     private void Jump()
     {
         rb.velocity = new Vector2(rb.velocity.x, 0);
@@ -65,6 +71,9 @@ public class Player : MonoBehaviour
         //jumpParticles.Play();
     }
 
+    /// <summary>
+    /// Initial check to see if the game should start.
+    /// </summary>
     private void PollStart()
     {
         if (Input.GetKeyDown(KeyCode.Space))
@@ -75,11 +84,20 @@ public class Player : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Returns whether the player can bounce. Mostly
+    /// serves as a bug fix so a player can't bounce
+    /// twice if hitting two objects from the top at once.
+    /// </summary>
+    /// <returns>Whether the player can bounce or not.</returns>
     private bool CanBounce()
     {
         return canBounce <= 0;
     }
 
+    /// <summary>
+    /// Player death.
+    /// </summary>
     private void Die()
     {
         //StartCoroutine(Death());
@@ -90,21 +108,19 @@ public class Player : MonoBehaviour
         this.enabled = false;  // maybe sus, trying to get rid of bug where
                                // you can still land on the ground after dying 
         GlobalManager.instance.camController.Shake(0.1f, 0.25f, 1.0f);
-        GlobalManager.instance.palette.SetColors(GlobalManager.HEAVEN_PALETTE);
+        GlobalManager.instance.palette.SetColors(GlobalManager.HELL_PALETTE);
         Destroy(this.gameObject, duration);
     }
 
-    //IEnumerator Death()
-    //{
-    //    deathParticles.Play();
-    //    //while (deathParticles.IsAlive());
-    //    Destroy(this.gameObject);
-    //    yield return null;
-    //}
-
+    /// <summary>
+    /// Don't manage collision if the game hasn't started.
+    /// Kills player if player runs into dangerous things.
+    /// Player will bounce off of objects that it can bounce off of.
+    /// </summary>
+    /// <param name="collision">Object the player is colliding with.</param>
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (!GlobalManager.instance.IsGameStarted() || !CanBounce() )
+        if (!GlobalManager.instance.IsGameStarted())
         {
             return;
         }
@@ -119,25 +135,28 @@ public class Player : MonoBehaviour
 
         // if not touching lava nor spikes, test if we can
         // jump off of the object we're touching
-        foreach(ContactPoint2D point in collision.contacts)
+        if (CanBounce())
         {
-            if (point.normal.y >= JUMP_THRESHHOLD)
+            foreach (ContactPoint2D point in collision.contacts)
             {
-                Jump();
-                canBounce = BOUNCE_TIMER;
+                if (point.normal.y >= JUMP_THRESHHOLD)
+                {
+                    Jump();
+                    canBounce = BOUNCE_TIMER;
 
-                Killable k = collision.gameObject.GetComponent<Killable>();
-                if (k != null)
-                {
-                    killParticles.Play();
-                    GlobalManager.instance.camController.Shake(0.1f, 0.25f, 1.0f);
-                    Destroy(k.gameObject);
+                    Killable k = collision.gameObject.GetComponent<Killable>();
+                    if (k != null)
+                    {
+                        killParticles.Play();
+                        GlobalManager.instance.camController.Shake(0.1f, 0.25f, 1.0f);
+                        Destroy(k.gameObject);
+                    }
+                    else
+                    {
+                        jumpParticles.Play();
+                    }
+                    return;
                 }
-                else
-                {
-                    jumpParticles.Play();
-                }
-                return;
             }
         }
 

@@ -32,6 +32,10 @@ public class CameraController : MonoBehaviour
         UpdateCameraToPlayer();
     }
 
+    /// <summary>
+    /// Moves the camera forward with the player
+    /// but never backwards.
+    /// </summary>
     private void UpdateCameraToPlayer()
     {
         if (!GlobalManager.instance.HasPlayer()) return;
@@ -57,10 +61,18 @@ public class CameraController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Initiates a camera shake if the camera is not currently shaking.
+    /// </summary>
+    /// <param name="shakeTime">Duration for the camera to shake.</param>
+    /// <param name="shakeMagnitude">Strength of the camera shake.</param>
+    /// <param name="shakeDampening">Smoothness of the camera shake.</param>
     public void Shake(float shakeTime=0.25f, 
                       float shakeMagnitude=0.7f,
                       float shakeDampening=1f)
     {
+        if (isShaking) return;
+
         // update fields
         this.shakeDuration = shakeTime;
         this.shakeMagnitude = shakeMagnitude;

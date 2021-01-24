@@ -45,6 +45,7 @@ public class GlobalManager : MonoBehaviour
     {
         SetUpCamera();
         SetUpPlayer();
+        Jukebox.Instance.PlayMusic("DefaultOverworld", 0.025f, 1f);
     }
 
     // Update is called once per frame

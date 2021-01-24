@@ -46,6 +46,20 @@ public class Jukebox : MonoBehaviour
         }
     }
 
+    public void PlayMusic(string name, float volume, float pitch)
+    {
+        foreach (Sound s in musics) {
+            if (s.name.Equals(name))
+            {
+                musicSource.clip = s.clip;
+                musicSource.volume = volume;
+                musicSource.pitch = pitch;
+                musicSource.loop = s.loop;
+                musicSource.Play();
+                return;
+            }
+        }
+    }
 
     public void PlaySFX(string name)
     {

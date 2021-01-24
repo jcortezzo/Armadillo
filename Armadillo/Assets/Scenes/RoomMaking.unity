@@ -128,6 +128,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3896030172062898220, guid: 8821154b13dceed44b8c91c0f0c2d61f,
+        type: 3}
+      propertyPath: musics.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3896030172062898220, guid: 8821154b13dceed44b8c91c0f0c2d61f,
+        type: 3}
+      propertyPath: musics.Array.data[0].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 603d9ce304b5a5b49900c828e739644d, type: 3}
+    - target: {fileID: 3896030172062898220, guid: 8821154b13dceed44b8c91c0f0c2d61f,
+        type: 3}
+      propertyPath: musics.Array.data[0].name
+      value: DefaultOverworld
+      objectReference: {fileID: 0}
     - target: {fileID: 3969208269090641543, guid: 8821154b13dceed44b8c91c0f0c2d61f,
         type: 3}
       propertyPath: m_Name

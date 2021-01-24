@@ -113,7 +113,7 @@ public class Player : MonoBehaviour
         //GlobalManager.instance.palette.SetColors(GlobalManager.HELL_PALETTE);
         GlobalManager.instance.SetBiome(ChooseBiome());
         Destroy(this.gameObject, duration);
-        Jukebox.Instance.PlaySFX("die", 0.5f, 1f);
+        Jukebox.Instance.PlaySFX("die", 0.025f, 1f);
     }
 
     /// <summary>

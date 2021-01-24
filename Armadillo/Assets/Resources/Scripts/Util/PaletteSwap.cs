@@ -32,5 +32,13 @@ public class PaletteSwap : MonoBehaviour
         Graphics.Blit(src, dst, _mat);
     }
 
+    public void SetColors(Color a, Color b, Color c) 
+    {
+        Out0 = a; Out1 = b; Out2 = c;
+    }
 
+    public void SetColors(Color[] colors)
+    {
+        Out0 = colors[0]; Out1 = colors[1]; Out2 = colors[2];
+    }
 }

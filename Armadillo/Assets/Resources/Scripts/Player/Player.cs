@@ -90,6 +90,7 @@ public class Player : MonoBehaviour
         this.enabled = false;  // maybe sus, trying to get rid of bug where
                                // you can still land on the ground after dying 
         GlobalManager.instance.camController.Shake(0.1f, 0.25f, 1.0f);
+        GlobalManager.instance.palette.SetColors(GlobalManager.HEAVEN_PALETTE);
         Destroy(this.gameObject, duration);
     }
 

@@ -110,6 +110,7 @@ public class Player : MonoBehaviour
         GlobalManager.instance.camController.Shake(0.1f, 0.25f, 1.0f);
         GlobalManager.instance.palette.SetColors(GlobalManager.HELL_PALETTE);
         Destroy(this.gameObject, duration);
+        Jukebox.Instance.PlaySFX("die", 0.5f, 1f);
     }
 
     /// <summary>
@@ -143,12 +144,14 @@ public class Player : MonoBehaviour
                 {
                     Jump();
                     canBounce = BOUNCE_TIMER;
+                    Jukebox.Instance.PlaySFX("Jump", 0.5f, 1f);
 
                     Killable k = collision.gameObject.GetComponent<Killable>();
                     if (k != null)
                     {
                         killParticles.Play();
                         GlobalManager.instance.camController.Shake(0.1f, 0.25f, 1.0f);
+                        Jukebox.Instance.PlaySFX("Dmg2", 0.5f, 1f);
                         Destroy(k.gameObject);
                     }
                     else

@@ -26,6 +26,16 @@ public class CameraController : MonoBehaviour
         UpdateShake();
     }
 
+    void LateUpdate()
+    {
+        // don't allow the camera to move backwards
+        transform.position =
+                new Vector3(Mathf.Max(transform.position.x,
+                                      GlobalManager.instance.player.transform.position.x),
+                            transform.position.y,
+                            transform.position.z);
+    }
+
     private void UpdateShake()
     {
         if (shakeDuration > 0)

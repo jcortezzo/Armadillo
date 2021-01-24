@@ -748,6 +748,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8497816252677873943, guid: c0d9be184feb04a44bf995fde23d61b1,
         type: 3}
+    - target: {fileID: 3843584427778661469, guid: 4233a727dfabff74ba718e81986d034c,
+        type: 3}
+      propertyPath: enableHell
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6891563803233505021, guid: 4233a727dfabff74ba718e81986d034c,
         type: 3}
       propertyPath: m_Name

@@ -11,7 +11,6 @@ public class LevelGenerator : MonoBehaviour
 
     [SerializeField] private GameObject[] rooms;
 
-
     // Start is called before the first frame update
     void Start()
     {

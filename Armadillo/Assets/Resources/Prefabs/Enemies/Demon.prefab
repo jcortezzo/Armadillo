@@ -57,13 +57,13 @@ GameObject:
   m_Component:
   - component: {fileID: 6500749869121800267}
   - component: {fileID: 6500749869121800264}
-  - component: {fileID: 6500749869121800265}
-  - component: {fileID: 4099473725653944459}
   - component: {fileID: 8255041461758957862}
   - component: {fileID: 1315616869832492375}
   - component: {fileID: 2388565393792305189}
+  - component: {fileID: 3841556946017253811}
+  - component: {fileID: 8455975713353538752}
   m_Layer: 8
-  m_Name: Bird
+  m_Name: Demon
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -123,7 +123,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -3551287784963028691, guid: de947fdd52b58bf45a646413533667cc,
+  m_Sprite: {fileID: 6897479667268090689, guid: 52be4f67eeb08bc44a728789c6df449b,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -135,41 +135,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &6500749869121800265
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6500749869121800270}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: f2df8286602ec8a44ae5377b99cbc675, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
---- !u!70 &4099473725653944459
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6500749869121800270}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.025425315, y: -0.09476757}
-  m_Size: {x: 0.48834062, y: 0.8211832}
-  m_Direction: 0
 --- !u!50 &8255041461758957862
 Rigidbody2D:
   serializedVersion: 4
@@ -215,4 +180,39 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9545bd193542d0246a1d47bbfc62e262, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SPEED: 300
+  SPEED: 500
+--- !u!58 &3841556946017253811
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6500749869121800270}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.06631172, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.40337646
+--- !u!95 &8455975713353538752
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6500749869121800270}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8caf7ae155c89a84e9297548c9490e28, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

@@ -13,6 +13,8 @@ public class GlobalManager : MonoBehaviour
     private float score;
     private float karma;
 
+    [SerializeField] private Biomes biome;
+
     public static Color[] DEFAULT_PALETTE = 
             { Color.black,
               Color.white,
@@ -49,23 +51,18 @@ public class GlobalManager : MonoBehaviour
     void Update()
     {
         SetUpPlayer();
-        PaletteChange();
+        SetBiomePalette();
+        //PaletteChange();
     }
 
-    private void PaletteChange()
+    public void SetBiome(Biomes b)
     {
-        if (enableDefault)
-        {
-            palette.SetColors(DEFAULT_PALETTE);
-        }
-        else if (enableHell)
-        {
-            palette.SetColors(HELL_PALETTE);
-        }
-        else if (enableHeaven)
-        {
-            palette.SetColors(HEAVEN_PALETTE);
-        }
+        this.biome = b;
+    }
+
+    public Biomes GetBiome()
+    {
+        return biome;
     }
 
     public void AddScore(float n)
@@ -106,6 +103,38 @@ public class GlobalManager : MonoBehaviour
     public void EndGame()
     {
         isStarted = false;
+    }
+
+    private void SetBiomePalette()
+    {
+        if (biome == Biomes.DEFAULT)
+        {
+            palette.SetColors(DEFAULT_PALETTE);
+        }
+        else if (biome == Biomes.HELL)
+        {
+            palette.SetColors(HELL_PALETTE);
+        }
+        else if (biome == Biomes.HEAVEN)
+        {
+            palette.SetColors(HEAVEN_PALETTE);
+        }
+    }
+
+    private void PaletteChange()
+    {
+        if (enableDefault)
+        {
+            palette.SetColors(DEFAULT_PALETTE);
+        }
+        else if (enableHell)
+        {
+            palette.SetColors(HELL_PALETTE);
+        }
+        else if (enableHeaven)
+        {
+            palette.SetColors(HEAVEN_PALETTE);
+        }
     }
 
     private void SetUpSingleton()

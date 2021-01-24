@@ -8,6 +8,8 @@ public class Player : MonoBehaviour
     [SerializeField] private float SPEED;
     [SerializeField] private float JUMP_THRESHHOLD;
     [SerializeField] private float BOUNCE_TIMER;
+    [SerializeField] private float HEAVEN_KARMA;
+    [SerializeField] private float HELL_KARMA;
 
     private float canBounce;
     
@@ -108,9 +110,35 @@ public class Player : MonoBehaviour
         this.enabled = false;  // maybe sus, trying to get rid of bug where
                                // you can still land on the ground after dying 
         GlobalManager.instance.camController.Shake(0.1f, 0.25f, 1.0f);
-        GlobalManager.instance.palette.SetColors(GlobalManager.HELL_PALETTE);
+        //GlobalManager.instance.palette.SetColors(GlobalManager.HELL_PALETTE);
+        GlobalManager.instance.SetBiome(ChooseBiome());
         Destroy(this.gameObject, duration);
         Jukebox.Instance.PlaySFX("die", 0.5f, 1f);
+    }
+
+    /// <summary>
+    /// Returns the next biome based on your karma. If you're on Earth
+    /// you will either go to heaven or hell. If you are in heaven or hell
+    /// you will go back to Earth unless you have a hell-worthy karma in heaven.
+    /// </summary>
+    /// <returns>The correct biome to travel to after death.</returns>
+    private Biomes ChooseBiome()
+    {
+        Biomes currentBiome = GlobalManager.instance.GetBiome();
+        int karma = GlobalManager.instance.GetKarma();
+
+        if (currentBiome == Biomes.DEFAULT)
+        {
+            return karma >= HEAVEN_KARMA ? Biomes.HEAVEN : Biomes.HELL;
+        }
+        else if (currentBiome == Biomes.HEAVEN)
+        {
+            return karma < HELL_KARMA ? Biomes.HELL : Biomes.DEFAULT;  // maybe LEQ instead of strictly LE?
+        }
+        else
+        {
+            return Biomes.DEFAULT;
+        }
     }
 
     /// <summary>

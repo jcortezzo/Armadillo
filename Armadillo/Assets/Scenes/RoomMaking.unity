@@ -1048,30 +1048,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3843584427778661469, guid: 4233a727dfabff74ba718e81986d034c,
         type: 3}
-      propertyPath: rooms.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3843584427778661469, guid: 4233a727dfabff74ba718e81986d034c,
-        type: 3}
       propertyPath: currentRoom
       value: 
       objectReference: {fileID: 46932185}
-    - target: {fileID: 3843584427778661469, guid: 4233a727dfabff74ba718e81986d034c,
-        type: 3}
-      propertyPath: rooms.Array.data[1]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 3843584427778661469, guid: 4233a727dfabff74ba718e81986d034c,
-        type: 3}
-      propertyPath: enableHell
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3843584427778661469, guid: 4233a727dfabff74ba718e81986d034c,
-        type: 3}
-      propertyPath: rooms.Array.data[0]
-      value: 
-      objectReference: {fileID: 8497816252677873943, guid: af6003a0911d42141833f73e69b93c8e,
-        type: 3}
     - target: {fileID: 6891563803233505021, guid: 4233a727dfabff74ba718e81986d034c,
         type: 3}
       propertyPath: m_Name

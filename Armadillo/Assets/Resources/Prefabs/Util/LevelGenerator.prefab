@@ -44,7 +44,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentRoom: {fileID: 0}
+  prevRoom: {fileID: 0}
   GEN_THRESHHOLD: 0
   DELETE_THRESHHOLD: 0
   rooms:
-  - {fileID: 8497816252677873943, guid: 994f0df67b72d114195cf9544fe14a67, type: 3}
+  - {fileID: 8497816252677873943, guid: af6003a0911d42141833f73e69b93c8e, type: 3}
+  - {fileID: 8497816252677873943, guid: 98f3e73ac80f50a46ae852eb8541639b, type: 3}
+  - {fileID: 8497816252677873943, guid: 85e9e2758ae1d544d968f9f7e83c6728, type: 3}

@@ -40,11 +40,13 @@ public class CameraController : MonoBehaviour
     {
         if (!GlobalManager.instance.HasPlayer()) return;
 
-        transform.position =
+        Vector3 newPos =
                 new Vector3(Mathf.Max(transform.position.x,
                                       GlobalManager.instance.player.transform.position.x),
                             transform.position.y,
                             transform.position.z);
+        GlobalManager.instance.AddScore(Vector2.Distance(newPos, transform.position));
+        transform.position = newPos;
     }
 
     private void UpdateShake()

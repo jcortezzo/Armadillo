@@ -149,6 +149,8 @@ public class Player : MonoBehaviour
                     {
                         killParticles.Play();
                         GlobalManager.instance.camController.Shake(0.1f, 0.25f, 1.0f);
+                        GlobalManager.instance.AddScore(k.GetScoreWorth());
+                        GlobalManager.instance.AddKarma(k.GetKarmaWorth());
                         Destroy(k.gameObject);
                     }
                     else

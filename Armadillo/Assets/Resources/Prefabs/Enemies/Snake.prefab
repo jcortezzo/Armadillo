@@ -136,6 +136,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0887fc79a4432c4cbee823ccc89755a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  score: 5
+  karma: 1
 --- !u!95 &8173521792189848542
 Animator:
   serializedVersion: 3

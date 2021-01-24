@@ -9,7 +9,7 @@ public class Quantum : MonoBehaviour
 
     protected virtual void Awake()
     {
-        if (isQuantum && Random.Range(0f, 1f) < probability)
+        if (isQuantum && Random.Range(0f, 1f) >= probability)
         {
             Destroy(this.gameObject);
         }

@@ -10,6 +10,8 @@ public class GlobalManager : MonoBehaviour
     public PaletteSwap palette;
     private bool isStarted;
     public Player player;
+    private float score;
+    private float karma;
 
     public static Color[] DEFAULT_PALETTE = 
             { Color.black,
@@ -64,6 +66,26 @@ public class GlobalManager : MonoBehaviour
         {
             palette.SetColors(HEAVEN_PALETTE);
         }
+    }
+
+    public void AddScore(float n)
+    {
+        score += n;
+    }
+
+    public int GetScore()
+    {
+        return Mathf.FloorToInt(score);
+    }
+
+    public void AddKarma(float n)
+    {
+        karma += n;
+    }
+
+    public int GetKarma()
+    {
+        return Mathf.FloorToInt(karma);
     }
 
     public bool HasPlayer()

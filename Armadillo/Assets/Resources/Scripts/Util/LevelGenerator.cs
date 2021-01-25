@@ -86,7 +86,8 @@ public class LevelGenerator : MonoBehaviour
             //       the time that Destroy() was called.
             foreach (Transform child in prevRoom.transform)
             {
-                if (child.gameObject.CompareTag("Enemy"))
+                if (child.gameObject.CompareTag("Enemy") || 
+                    child.gameObject.CompareTag("Holy"))
                 {
                     child.SetParent(null);
                 }

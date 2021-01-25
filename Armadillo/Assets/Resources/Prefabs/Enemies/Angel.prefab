@@ -301,6 +301,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: JumpParticles
       objectReference: {fileID: 0}
+    - target: {fileID: 569269175629232757, guid: 3f5d19014f6b1ad4fbcacabff2b53064,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3f5d19014f6b1ad4fbcacabff2b53064, type: 3}
 --- !u!4 &1577227772305769072 stripped

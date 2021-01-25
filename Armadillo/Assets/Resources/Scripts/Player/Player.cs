@@ -227,7 +227,7 @@ public class Player : MonoBehaviour
         }
         else if (collision.gameObject.CompareTag("Holy"))
         {
-            collision.gameObject.GetComponent<Angel>().Bless();
+            collision.gameObject.GetComponent<Angel>().Bless();  // LMF
         }
     }
 
@@ -236,6 +236,11 @@ public class Player : MonoBehaviour
         if (collision.gameObject.CompareTag("OHKO") && !invincible)
         {
             Die();
+        }
+        else if (collision.gameObject.CompareTag("Holy"))
+        {
+            collision.gameObject.GetComponent<Apple>().Bless();  //AO
+            collision.gameObject.GetComponent<Apple>().Use();
         }
     }
 

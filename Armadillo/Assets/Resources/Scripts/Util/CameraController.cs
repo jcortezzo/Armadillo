@@ -18,6 +18,7 @@ public class CameraController : MonoBehaviour
     {
         cam = GetComponent<Camera>();
         isShaking = false;
+        //DontDestroyOnLoad(this.gameObject);   // niooo0pooo
     }
 
     // Update is called once per frame

@@ -43,7 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e968cf044046e241a321fd9947aa492, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isQuantum: 1
+  isQuantum: 0
   probability: 0.5
 --- !u!1 &8053710983022746090
 GameObject:

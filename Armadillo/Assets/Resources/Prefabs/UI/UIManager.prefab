@@ -45,3 +45,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   floatingTextGO: {fileID: 5115422530971924453, guid: 098cf08769d816542984b9ce747eeb61,
     type: 3}
+  restart: {fileID: 0}

@@ -15,6 +15,9 @@ public class GlobalManager : MonoBehaviour
     private float karma;
     [SerializeField] private bool gameOver;
 
+    bool restarted = false;
+
+
     [SerializeField] private Biomes biome;
 
     public static Color[] DEFAULT_PALETTE = 
@@ -47,6 +50,7 @@ public class GlobalManager : MonoBehaviour
     {
         SetUpCamera();
         SetUpPlayer();
+        StartNewGame();
         Jukebox.Instance.PlayMusic("DefaultOverworld", 0.025f, 1f);
     }
 
@@ -55,6 +59,24 @@ public class GlobalManager : MonoBehaviour
     {
         SetUpPlayer();
         SetBiomePalette();
+
+        if (restarted)
+        {
+            restarted = false;
+            SetUpCamera();
+            SetUpPlayer();
+            StartNewGame();
+        }
+
+        if (player == null && Input.GetKeyDown(KeyCode.Space))
+        {
+            SceneManagerSingleton.instance.RestartScene();
+            score = 0;
+            karma = 0;
+            lives = 3;
+            isStarted = false;
+            restarted = true;
+        }
         //PaletteChange();
     }
 

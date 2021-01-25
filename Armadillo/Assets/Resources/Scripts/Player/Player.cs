@@ -20,6 +20,11 @@ public class Player : MonoBehaviour
     private ParticleSystem killParticles;
     private ParticleSystem deathParticles;
 
+    [Header("Iframes")]
+    [SerializeField] private int NUM_FLASHES;
+    [SerializeField] private float FLASH_DURATION;
+    private bool invincible;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -104,16 +109,30 @@ public class Player : MonoBehaviour
     {
         //StartCoroutine(Death());
         deathParticles.Play();
-        float duration = 
-                deathParticles.duration + deathParticles.startLifetime;  // ???
-        sr.enabled = false;
-        this.enabled = false;  // maybe sus, trying to get rid of bug where
-                               // you can still land on the ground after dying 
+        
         GlobalManager.instance.camController.Shake(0.1f, 0.25f, 1.0f);
         //GlobalManager.instance.palette.SetColors(GlobalManager.HELL_PALETTE);
         GlobalManager.instance.SetBiome(ChooseBiome());
-        Destroy(this.gameObject, duration);
+        //
         Jukebox.Instance.PlaySFX("die", 0.025f, 1f);
+        GlobalManager.instance.AddLives(-1);
+
+        // actually dead
+        if (GlobalManager.instance.GetLives() < 0)
+        {
+            float duration =
+                deathParticles.duration + deathParticles.startLifetime;  // ???
+            sr.enabled = false;
+            this.enabled = false;  // maybe sus, trying to get rid of bug where
+                                   // you can still land on the ground after dying 
+            Destroy(this.gameObject, duration);
+
+            GlobalManager.instance.EndCurrentGame();
+        } else
+        {
+            Jump();
+            StartCoroutine(TakeDamage());
+        }
     }
 
     /// <summary>
@@ -157,7 +176,7 @@ public class Player : MonoBehaviour
         /*
          * TODO: if touching lava or spikes player should always die
          */
-        if (collision.gameObject.CompareTag("OHKO"))
+        if (collision.gameObject.CompareTag("OHKO") && !invincible)
         {
             Die();
         }
@@ -181,6 +200,13 @@ public class Player : MonoBehaviour
                         GlobalManager.instance.camController.Shake(0.1f, 0.25f, 1.0f);
                         GlobalManager.instance.AddScore(k.GetScoreWorth());
                         GlobalManager.instance.AddKarma(k.GetKarmaWorth());
+
+                        if (k.GetKarmaWorth() != 0)
+                        {
+                            UIManager.instance.PopUpKarma(k.gameObject, Mathf.FloorToInt(k.GetKarmaWorth()),
+                                                          k.GetKarmaWorth() > 0 ? Color.white : Color.red);
+                        }
+                        
                         Jukebox.Instance.PlaySFX("Dmg2", 0.5f, 1f);
                         Destroy(k.gameObject);
                     }
@@ -195,9 +221,35 @@ public class Player : MonoBehaviour
 
         // if not on top of other object
         // see if it will kill you
-        if (collision.gameObject.CompareTag("Enemy"))
+        if (collision.gameObject.CompareTag("Enemy") && !invincible)
         {
             Die();
         }
+        else if (collision.gameObject.CompareTag("Holy"))
+        {
+            collision.gameObject.GetComponent<Angel>().Bless();
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("OHKO") && !invincible)
+        {
+            Die();
+        }
+    }
+
+    private IEnumerator TakeDamage()
+    {
+        int n = NUM_FLASHES;
+        invincible = true;
+        while (n --> 0)
+        {
+            sr.enabled = false;
+            yield return new WaitForSeconds(FLASH_DURATION);
+            sr.enabled = true;
+            yield return new WaitForSeconds(FLASH_DURATION);
+        }
+        invincible = false;
     }
 }

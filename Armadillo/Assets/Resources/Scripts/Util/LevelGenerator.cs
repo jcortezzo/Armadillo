@@ -11,6 +11,10 @@ public class LevelGenerator : MonoBehaviour
 
     [SerializeField] private GameObject[] rooms;
 
+    [SerializeField] private GameObject[] defaultRooms;
+    [SerializeField] private GameObject[] heavenRooms;
+    [SerializeField] private GameObject[] hellRooms;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,6 +28,23 @@ public class LevelGenerator : MonoBehaviour
         GenerateNextRoom(); 
     }
 
+    private GameObject[] ChooseRoomType()
+    {
+        Biomes b = GlobalManager.instance.GetBiome();
+        if (b == Biomes.DEFAULT)
+        {
+            return defaultRooms;
+        }
+        else if (b == Biomes.HEAVEN)
+        {
+            return heavenRooms;
+        }
+        else  // all else hell (should be elif if compilers were smart)
+        {
+            return hellRooms;
+        }
+    }
+
     /// <summary>
     /// Generates a new room if the player is close enough to the next room.
     /// </summary>
@@ -35,7 +56,7 @@ public class LevelGenerator : MonoBehaviour
             currentRoom.boundingBox.center.x - GEN_THRESHHOLD)
         {
             Room nextRoom = 
-                    Instantiate(rooms[Random.Range(0, rooms.Length)], 
+                    Instantiate(ChooseRoomType()[Random.Range(0, ChooseRoomType().Length)],   // was prev from rooms arr
                                 new Vector2(currentRoom.boundingBox.max.x, currentRoom.transform.position.y), 
                                 Quaternion.identity)
                                 .GetComponent<Room>();

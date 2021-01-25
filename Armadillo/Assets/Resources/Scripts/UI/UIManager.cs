@@ -1,0 +1,52 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using TMPro;
+
+public class UIManager : MonoBehaviour
+{
+    public static UIManager instance;
+    [SerializeField] public GameObject floatingTextGO;
+
+    private void Awake()
+    {
+        SetUpSingleton();
+    }
+
+    public void PopUpKarma(GameObject parent, int value, Color color)
+    {
+        GameObject go = Instantiate(floatingTextGO, 
+                                    parent.transform.position + Vector3.up * 2, 
+                                    Quaternion.identity);
+        FloatingText ft = go.GetComponent<FloatingText>();
+        TextMesh tmp = ft.gameObject.GetComponent<TextMesh>();
+        tmp.text = "" + value;
+        tmp.color = color;
+        Debug.Log(tmp.text);
+    }
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+
+    private void SetUpSingleton()
+    {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(this.gameObject);
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
+    }
+}

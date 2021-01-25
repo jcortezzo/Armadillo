@@ -10,8 +10,10 @@ public class GlobalManager : MonoBehaviour
     public PaletteSwap palette;
     private bool isStarted;
     public Player player;
+    [SerializeField] private int lives;
     private float score;
     private float karma;
+    [SerializeField] private bool gameOver;
 
     [SerializeField] private Biomes biome;
 
@@ -54,6 +56,31 @@ public class GlobalManager : MonoBehaviour
         SetUpPlayer();
         SetBiomePalette();
         //PaletteChange();
+    }
+
+    public bool IsGameRunning()
+    {
+        return gameOver;
+    }
+
+    public void StartNewGame()
+    {
+        gameOver = false;
+    }
+
+    public void EndCurrentGame()
+    {
+        gameOver = true;
+    }
+
+    public void AddLives(int n)
+    {
+        lives += n;
+    }
+
+    public int GetLives()
+    {
+        return lives;
     }
 
     public void SetBiome(Biomes b)

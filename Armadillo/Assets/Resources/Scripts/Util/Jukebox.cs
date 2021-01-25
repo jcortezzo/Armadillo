@@ -61,6 +61,24 @@ public class Jukebox : MonoBehaviour
         }
     }
 
+    public void PlaySFXAudioSource(string name, float volume, float pitch)
+    {
+        if (sfxSource.isPlaying) return;
+
+        foreach (Sound s in sfxs)
+        {
+            if (s.name.Equals(name) && !sfxSource.isPlaying)
+            {
+                sfxSource.clip = s.clip;
+                sfxSource.volume = volume;
+                sfxSource.pitch = pitch;
+                sfxSource.loop = false;
+                if (!sfxSource.isPlaying) sfxSource.Play();
+                return;
+            }
+        }
+    }
+
     public void PlaySFX(string name)
     {
         foreach (Sound s in sfxs)

@@ -65,6 +65,11 @@ public class Player : MonoBehaviour
         movement.Normalize();
         movement = new Vector2(movement.x * SPEED, movement.y);
 
+        if (GlobalManager.instance.cam.WorldToScreenPoint(transform.position).x <= 0)
+        {
+            movement = new Vector2(Mathf.Max(movement.x, 0), movement.y);
+        }
+
         rb.velocity = new Vector2(movement.x, rb.velocity.y);
     }
 
@@ -107,6 +112,7 @@ public class Player : MonoBehaviour
     /// </summary>
     private void Die()
     {
+        invincible = true;
         //StartCoroutine(Death());
         deathParticles.Play();
         
@@ -114,7 +120,7 @@ public class Player : MonoBehaviour
         //GlobalManager.instance.palette.SetColors(GlobalManager.HELL_PALETTE);
         GlobalManager.instance.SetBiome(ChooseBiome());
         //
-        Jukebox.Instance.PlaySFX("die", 0.025f, 1f);
+        Jukebox.Instance.PlaySFX("die", 0.3f, 1f);
         GlobalManager.instance.AddLives(-1);
 
         // actually dead
@@ -179,6 +185,7 @@ public class Player : MonoBehaviour
         if (collision.gameObject.CompareTag("OHKO") && !invincible)
         {
             Die();
+            return;
         }
 
         // if not touching lava nor spikes, test if we can

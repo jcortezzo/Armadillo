@@ -76,6 +76,7 @@ public class GlobalManager : MonoBehaviour
             lives = 3;
             isStarted = false;
             restarted = true;
+            biome = Biomes.DEFAULT;
         }
         //PaletteChange();
     }
